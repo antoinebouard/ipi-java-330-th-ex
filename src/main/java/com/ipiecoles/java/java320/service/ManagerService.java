@@ -1,5 +1,6 @@
 package com.ipiecoles.java.java320.service;
 
+import com.ipiecoles.java.java320.model.Employe;
 import com.ipiecoles.java.java320.model.Manager;
 import com.ipiecoles.java.java320.model.Technicien;
 import com.ipiecoles.java.java320.repository.ManagerRepository;
@@ -18,6 +19,21 @@ public class ManagerService {
     @Autowired
     private TechnicienRepository technicienRepository;
 
+    /**
+     * Méthode cherchant un employé en fonction de son identifiant
+     *
+     * @param id Identifiant de l'employé à chercher en base
+     * @return l'employé d'identifiant celui recherché
+     * @throws EntityNotFoundException Si l'identifiant ne correspond à aucun employé
+     */
+    public Manager findById(Long id){
+        Optional<Manager> optionalManager = managerRepository.findById(id);
+        if(optionalManager.isPresent()){
+            return optionalManager.get();
+        } else {
+            throw new EntityNotFoundException("Impossible de trouver le manager d'identifiant " + id);
+        }
+    }
     /**
      * Méthode permettant de supprimer un technicien de l'équipe d'un manager
      * @param idManager Identifiant du manager
