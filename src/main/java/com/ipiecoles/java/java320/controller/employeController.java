@@ -47,8 +47,8 @@ public class employeController {
                                @RequestParam(defaultValue = "10") Integer size,
                                @RequestParam(defaultValue = "ASC") String sortDirection,
                                @RequestParam(defaultValue = "matricule") String sortProperty) {
-        Page<Employe> allEmployes = employeService.findAllEmployes(page, size, sortDirection ,sortProperty);
-        model.put("employes", allEmployes);
+        Page<Employe> employes = employeService.findAllEmployes(page, size, sortDirection ,sortProperty);
+        model.put("employes", employes);
         model.addAttribute("start", page * size + 1);
         model.addAttribute("end", (page + 1) * size);
         model.addAttribute("pageNumber", page + 1);
